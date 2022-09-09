@@ -23,7 +23,7 @@ class MongoStore {
                 .on('close', () => resolve());
         });
         options.bucket = bucket;
-        await this.#deletePrevious(options);
+        await this.deletePrevious(options);
     }
 
     async extract(options) {
@@ -51,7 +51,7 @@ class MongoStore {
         });   
     }
 
-    async #deletePrevious(options) {
+    async deletePrevious(options) {
         const documents = await options.bucket.find({
             filename: `${options.session}.zip`
         }).toArray();
